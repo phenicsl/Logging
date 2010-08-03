@@ -1,6 +1,7 @@
 use v6;
 
 use Logging::Appender;
+use Logging::SimpleAppender;
 
 class Logger {
     # enumeration is not fully implemented in Rakudo Star. so use Int value instead.
@@ -26,6 +27,13 @@ class Logger {
 	return self.bless(self.CREATE(), :$level);
     }
     
+    method simple_init(:$level = Logger.INFO) {
+	my $logger = self.bless(self.CREATE(), :$level);
+	my $appender = SimpleAppender.new;
+	$logger.add_appender($appender);
+	$logger;
+    }
+
     method add_appender(Appender $appender) {
 	push @appenders, $appender;
     }

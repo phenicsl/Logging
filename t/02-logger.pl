@@ -31,3 +31,10 @@ say "load ok";
     $logger.error("ERROR message");
     $logger.fatal("FATAL message");
 }
+
+# use simple_init
+{
+    my Logger $logger = Logger.simple_init(level => Logger.DEBUG);
+    $logger.error("ERROR message");
+    $logger.fatal("FATAL message");
+}
